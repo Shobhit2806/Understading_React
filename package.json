@@ -2,7 +2,7 @@
   "name": "understading_react",
   "version": "1.0.0",
   "description": "This is Namaste React Course",
-  "main": "App.js",
+ 
   "scripts": {
     "test": "jest"
   },
