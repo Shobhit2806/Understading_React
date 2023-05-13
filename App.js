@@ -1,25 +1,21 @@
 import React from "react";
-import ReactDOM  from "react-dom/client";
+import ReactDOM from "react-dom";
 
-const parent = React.createElement("div", { id: "parent" },
-    React.createElement("div", {},
-        [React.createElement("h1", {}, "Hey I am nested h1 tag "),
-        React.createElement("h1", {}, "Hey I am sibling inside parent container ")]))
+// JSX => Babel transpiles it to React.createElement => React Element is nothing but JS Object => HTMLElement(render)
 
+const jsxHeading = <h1>Hello World From React Element</h1>;
 
-
-
-const heading = React.createElement("h1", { id: "heading" }, "Hello World from React");
-
-// React.createElement returns JS object.
-// Heading is an object consisting props.Check in console.
-
-console.log(heading)
+// One Way
+const HeadingComponent = () => {
+  return (
+    <>
+      <h1>Hello World from React component</h1>
+      {jsxHeading}
+    </>
+  );
+};
+// Another way, both are same thing both are valid functional components
+const HeadingComponent2 = () => <h1>Hello World from component</h1>;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-
-// heading is just an object yet
-// Render method is basically responsible for take this object and convert it into the heading tag and put it upon the DOM
-
-// root.render(heading);
-root.render(parent);
+root.render(<HeadingComponent />);
