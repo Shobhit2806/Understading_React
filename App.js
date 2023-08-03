@@ -14,7 +14,7 @@ const HeadingComponent = () => {
     </>
   );
 };
-// Another way, both are same thing both are valid functional components
+// Another way, both are same thing both are valid Functional components
 const HeadingComponent2 = () => <h1>Hello World from component</h1>;
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
