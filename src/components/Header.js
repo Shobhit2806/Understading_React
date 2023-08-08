@@ -19,6 +19,10 @@ const Header = () => {
             </Link>
             <li>Contact Us</li>
             <li>Cart</li>
+            <Link to="/grocery">
+              <li>Grocery</li>
+            </Link>
+
             <button
               onClick={() => {
                 btnNameReact === "Login"

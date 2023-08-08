@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 export const Body = () => {
   const [listofRestaurants, setListOfRestaurants] = useState([]);
@@ -25,7 +26,10 @@ export const Body = () => {
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
-
+  const onlineStatue = useOnlineStatus();
+  if(!onlineStatue){
+    return <h1>Looks like you are offline</h1>
+  }
   return (
     <div className="body">
       <div className="filter">
@@ -62,7 +66,7 @@ export const Body = () => {
         </button>
       </div>
       <div className="res-container">
-        {filteredRestaurants.map((resObj) => {
+        {filteredRestaurants?.map((resObj) => {
           return (
             <Link to={"/restaurants/"+ resObj.info.id} key={resObj.info.id}>
               <RestaurantCard resData={resObj} />;
