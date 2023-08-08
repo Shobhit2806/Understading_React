@@ -1,10 +1,11 @@
 import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 export const Body = () => {
   const [listofRestaurants, setListOfRestaurants] = useState([]);
-  const [filteredRestaurants,setFilterRestaurants] = useState([]);
+  const [filteredRestaurants, setFilterRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
@@ -20,7 +21,9 @@ export const Body = () => {
     setListOfRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
-    setFilterRestaurants(json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+    setFilterRestaurants(
+      json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
+    );
   };
 
   return (
@@ -37,10 +40,10 @@ export const Body = () => {
             onClick={() => {
               //Filter the restaurants and update the UI
               // console.log(searchText);
-              const filteredRestaurants = listofRestaurants.filter(
-                (res) => res.info.name.toLowerCase().includes(searchText)
+              const filteredRestaurants = listofRestaurants.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText)
               );
-              setFilterRestaurants(filteredRestaurants)
+              setFilterRestaurants(filteredRestaurants);
             }}
           >
             Search
@@ -60,7 +63,11 @@ export const Body = () => {
       </div>
       <div className="res-container">
         {filteredRestaurants.map((resObj) => {
-          return <RestaurantCard key={resObj.info.id} resData={resObj} />;
+          return (
+            <Link to={"/restaurants/"+ resObj.info.id} key={resObj.info.id}>
+              <RestaurantCard resData={resObj} />;
+            </Link>
+          );
         })}
       </div>
     </div>
