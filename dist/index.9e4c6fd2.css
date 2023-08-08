@@ -35,4 +35,9 @@
   display: flex;
 }
 
+.user-card {
+  border: 2px solid #000;
+  padding: 10px;
+}
+
 /*# sourceMappingURL=index.9e4c6fd2.css.map */
