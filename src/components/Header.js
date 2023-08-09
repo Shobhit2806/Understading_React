@@ -7,20 +7,20 @@ const Header = () => {
 
   return (
     <>
-      <div className="header">
+      <div className="header flex justify-between bg-pink-100 shadow-lg">
         <div className="logo-container">
-          <img className="logo" src={LOGO_URL} alt="" />
+          <img className="w-24" src={LOGO_URL} alt="" />
         </div>
-        <div className="nav-items">
-          <ul>
-            <li>Home</li>
+        <div className="nav-items flex items-center">
+          <ul className="flex p-4 m-4">
+            <li className="px-4">Home</li>
             <Link to="/about">
-              <li>About Us</li>
+              <li className="px-4">About Us</li>
             </Link>
-            <li>Contact Us</li>
-            <li>Cart</li>
+            <li className="px-4">Contact Us</li>
+            <li className="px-4">Cart</li>
             <Link to="/grocery">
-              <li>Grocery</li>
+              <li className="px-4">Grocery</li>
             </Link>
 
             <button

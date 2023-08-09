@@ -27,20 +27,21 @@ export const Body = () => {
     );
   };
   const onlineStatue = useOnlineStatus();
-  if(!onlineStatue){
-    return <h1>Looks like you are offline</h1>
+  if (!onlineStatue) {
+    return <h1>Looks like you are offline</h1>;
   }
   return (
     <div className="body">
-      <div className="filter">
-        <div className="search-bar">
+      <div className="filter flex items-center">
+        <div className="search-bar m-4 p-4">
           <input
             type="text"
-            className="search-box"
+            className="search-box border border-solid border-black"
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
           <button
+            className="px-4 py-2 bg-green-100 m-4 rounded-md"
             onClick={() => {
               //Filter the restaurants and update the UI
               // console.log(searchText);
@@ -53,23 +54,25 @@ export const Body = () => {
             Search
           </button>
         </div>
-        <button
-          className="filter-btn"
-          onClick={() => {
-            const filteredList = listofRestaurants.filter(
-              (res) => res.info.avgRating > 4.1
-            );
-            setListOfRestaurants(filteredList);
-          }}
-        >
-          Top Rated Restaurants
-        </button>
+        <div>
+          <button
+            className="filter-btn px-4 py-2 bg-gray-100 m-4 rounded-md"
+            onClick={() => {
+              const filteredList = listofRestaurants.filter(
+                (res) => res.info.avgRating > 4.1
+              );
+              setListOfRestaurants(filteredList);
+            }}
+          >
+            Top Rated Restaurants
+          </button>
+        </div>
       </div>
-      <div className="res-container">
+      <div className="res-container flex flex-wrap">
         {filteredRestaurants?.map((resObj) => {
           return (
-            <Link to={"/restaurants/"+ resObj.info.id} key={resObj.info.id}>
-              <RestaurantCard resData={resObj} />;
+            <Link to={"/restaurants/" + resObj.info.id} key={resObj.info.id}>
+              <RestaurantCard resData={resObj} />
             </Link>
           );
         })}
