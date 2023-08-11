@@ -1,14 +1,17 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, { isOpenLabel } from "./RestaurantCard";
 import resList from "../utils/mockData";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 export const Body = () => {
   const [listofRestaurants, setListOfRestaurants] = useState([]);
   const [filteredRestaurants, setFilterRestaurants] = useState([]);
   const [searchText, setSearchText] = useState("");
 
+  const RestaurantCardIsOpen = isOpenLabel(RestaurantCard);
+  const {setUserName,loggedInUser} = useContext(UserContext)
   useEffect(() => {
     fetchData();
   }, []);
@@ -26,6 +29,7 @@ export const Body = () => {
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
   };
+  // console.log(filteredRestaurants);
   const onlineStatue = useOnlineStatus();
   if (!onlineStatue) {
     return <h1>Looks like you are offline</h1>;
@@ -67,12 +71,20 @@ export const Body = () => {
             Top Rated Restaurants
           </button>
         </div>
+        <div>
+          <label>Username</label>
+          <input type="text" className="border border-black p-2" onChange={(e)=>setUserName(e.target.value)} value={loggedInUser}/>
+        </div>
       </div>
       <div className="res-container flex flex-wrap">
         {filteredRestaurants?.map((resObj) => {
           return (
             <Link to={"/restaurants/" + resObj.info.id} key={resObj.info.id}>
-              <RestaurantCard resData={resObj} />
+              {resObj?.info?.isOpen ? (
+                <RestaurantCardIsOpen resData={resObj} />
+              ) : (
+                <RestaurantCard resData={resObj} />
+              )}
             </Link>
           );
         })}
