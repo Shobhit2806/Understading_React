@@ -13,6 +13,7 @@
   "author": "Shobhit Garg",
   "license": "ISC",
   "devDependencies": {
+    "@testing-library/react": "^14.0.0",
     "parcel": "^2.8.3",
     "postcss": "^8.4.27",
     "process": "^0.11.10",
