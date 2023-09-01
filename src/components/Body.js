@@ -11,7 +11,7 @@ export const Body = () => {
   const [searchText, setSearchText] = useState("");
 
   const RestaurantCardIsOpen = isOpenLabel(RestaurantCard);
-  const {setUserName,loggedInUser} = useContext(UserContext)
+  const { setUserName, loggedInUser } = useContext(UserContext);
   useEffect(() => {
     fetchData();
   }, []);
@@ -21,7 +21,7 @@ export const Body = () => {
       "https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9360036&lng=77.6808128&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
     );
     const json = await data.json();
-
+    console.log(json);
     setListOfRestaurants(
       json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle?.restaurants
     );
@@ -39,6 +39,7 @@ export const Body = () => {
       <div className="filter flex items-center">
         <div className="search-bar m-4 p-4">
           <input
+            data-testid="searchInput"
             type="text"
             className="search-box border border-solid border-black"
             value={searchText}
@@ -49,7 +50,7 @@ export const Body = () => {
             onClick={() => {
               //Filter the restaurants and update the UI
               // console.log(searchText);
-              const filteredRestaurants = listofRestaurants.filter((res) =>
+              const filteredRestaurants = listofRestaurants?.filter((res) =>
                 res.info.name.toLowerCase().includes(searchText)
               );
               setFilterRestaurants(filteredRestaurants);
@@ -73,7 +74,12 @@ export const Body = () => {
         </div>
         <div>
           <label>Username</label>
-          <input type="text" className="border border-black p-2" onChange={(e)=>setUserName(e.target.value)} value={loggedInUser}/>
+          <input
+            type="text"
+            className="border border-black p-2"
+            onChange={(e) => setUserName(e.target.value)}
+            value={loggedInUser}
+          />
         </div>
       </div>
       <div className="res-container flex flex-wrap">
