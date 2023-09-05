@@ -5,11 +5,11 @@ import Error from "./components/Error";
 import About from "./components/About";
 import { Body } from "./components/Body";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import RestaurantMenu from "./components/RestaurantMenu";
+//import RestaurantMenu from "./components/RestaurantMenu";
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import appStore from "./utils/appStore";
-import Cart from "./components/Cart";
+//import Cart from "./components/Cart";
 import Contact from "./components/Contact";
 // import Grocery from "./components/Grocery";
 
@@ -35,6 +35,8 @@ const AppLayout = () => {
   );
 };
 const Grocery = lazy(() => import("./components/Grocery"));
+const Cart =  lazy(() => import("./components/Cart"));
+const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -50,7 +52,12 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/restaurants/:resId",
-        element: <RestaurantMenu />,
+
+        element: (
+          <Suspense fallback={<h1>Loading</h1>}>
+            <RestaurantMenu />,
+          </Suspense>
+        ),
       },
       {
         path: "/contact",
@@ -66,7 +73,11 @@ const appRouter = createBrowserRouter([
       },
       {
         path: "/cart",
-        element: <Cart />,
+        element: (
+          <Suspense fallback={<h1>Loading</h1>}>
+            <Cart />,
+          </Suspense>
+        ),
       },
     ],
     errorElement: <Error />,

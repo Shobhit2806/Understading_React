@@ -8,7 +8,7 @@ const RestaurantCard = (props) => {
   return (
     <div
       data-testid="resCard"
-      className="res-card m-4 p-4 w-[250px] bg-gray-100 rounded-lg hover:bg-gray-200"
+      className="res-card m-4 p-2 w-[250px] h-[500px]  bg-gray-100 rounded-lg hover:bg-gray-200"
     >
       <img
         className="food_img rounded-lg"
@@ -32,7 +32,7 @@ export const isOpenLabel = (RestaurantCard) => {
     //Functional  Component return jsx code.
     return (
       <div>
-        <label>Is Open</label>
+        {/* <label>Is Open</label> */}
         <RestaurantCard {...props} />
       </div>
     );
