@@ -18,7 +18,7 @@ export const Body = () => {
   }, []);
 
   const searchData = async (e) => {
-    if(e.target.value==="") return;
+    if (e.target.value === "") return;
     const data = await fetch(
       `https://www.swiggy.com/dapi/restaurants/search/suggest?lat=28.9120152&lng=77.7122996&str=${e.target.value}`
     );
@@ -112,11 +112,10 @@ export const Body = () => {
             <button
               className="filter-btn px-4 py-2 bg-gray-100 m-4 rounded-md"
               onClick={() => {
-                console.log("clicked");
                 const filteredList = listofRestaurants.filter(
                   (res) => res.info.avgRating > 4.1
                 );
-                console.log(filteredList);
+
                 setFilterRestaurants(filteredList);
               }}
             >

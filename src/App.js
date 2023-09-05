@@ -35,7 +35,7 @@ const AppLayout = () => {
   );
 };
 const Grocery = lazy(() => import("./components/Grocery"));
-const Cart =  lazy(() => import("./components/Cart"));
+const Cart = lazy(() => import("./components/Cart"));
 const RestaurantMenu = lazy(() => import("./components/RestaurantMenu"));
 const appRouter = createBrowserRouter([
   {
@@ -55,7 +55,7 @@ const appRouter = createBrowserRouter([
 
         element: (
           <Suspense fallback={<h1>Loading</h1>}>
-            <RestaurantMenu />,
+            <RestaurantMenu />
           </Suspense>
         ),
       },
@@ -67,7 +67,7 @@ const appRouter = createBrowserRouter([
         path: "/grocery",
         element: (
           <Suspense fallback={<h1>Loading</h1>}>
-            <Grocery />,
+            <Grocery />
           </Suspense>
         ),
       },
@@ -75,7 +75,7 @@ const appRouter = createBrowserRouter([
         path: "/cart",
         element: (
           <Suspense fallback={<h1>Loading</h1>}>
-            <Cart />,
+            <Cart />
           </Suspense>
         ),
       },

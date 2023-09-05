@@ -7,7 +7,7 @@ const RestaurantMenu = () => {
   const resInfo = useRestaurantMenu(resId);
   const [showIndex, setShowIndex] = useState(null);
   if (resInfo == null) {
-    return <h1>Loading</h1>;
+    return <h1>Loading</h1>
   }
 
   const { name, cuisines, costForTwoMessage } =
