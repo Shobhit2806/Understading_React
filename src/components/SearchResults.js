@@ -1,4 +1,4 @@
-import { CDN_URL } from "../utils/constants";
+// import { CDN_URL } from "../utils/constants";
 
 const SearchResults = (props) => {
   const { searchData } = props;
@@ -14,7 +14,10 @@ const SearchResults = (props) => {
           >
             <img
               className="food_img rounded-lg w-[250px] h-[200px]"
-              src={CDN_URL + card.cloudinaryId}
+              src={
+                "https://res.cloudinary.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/" +
+                card.cloudinaryId
+              }
               alt=""
             />
             <h3 className="font-bold py-4 text-lg">{card.text}</h3>
